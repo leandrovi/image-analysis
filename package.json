@@ -1,0 +1,10 @@
+{
+  "name": "image-analysis",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "leandrovi <leandrofernandesvieira@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.775.0"
+  }
+}
