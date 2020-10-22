@@ -1,7 +1,8 @@
 'use strict';
 
 const aws = require('aws-sdk')
-const { promises: { readFile } } = require('fs')
+const { get } = require('axios')
+// const { promises: { readFile } } = require('fs')
 
 class Handler {
   constructor({ rekoService, translatorService }) {
@@ -57,10 +58,24 @@ class Handler {
     return finalText.join('\n')
   }
 
+  async getImageBuffer(imageUrl) {
+    const response = await get(imageUrl, {
+      responseType: 'arraybuffer'
+    })
+
+    const buffer = Buffer.from(response.data, 'base64')
+
+    return buffer
+  }
+
   async main(event) {
     try {
+      const { imageUrl } = event.queryStringParameters
+
       // Image Binary
-      const imgBuffer = await readFile('./images/pug.jpg')
+      // const imgBuffer = await readFile('./images/pug.jpg')
+      console.log('Downloading image...')
+      const imgBuffer = await this.getImageBuffer(imageUrl)
 
       console.log('Detecting labels...')
       const { names, workingItems } = await this.detectImageLabels(imgBuffer)

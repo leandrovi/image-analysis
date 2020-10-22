@@ -5,6 +5,7 @@
   "author": "leandrovi <leandrofernandesvieira@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.775.0"
+    "aws-sdk": "^2.775.0",
+    "axios": "^0.20.0"
   }
 }
